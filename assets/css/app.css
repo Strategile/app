@@ -1,0 +1,41 @@
+th {
+    background-color: var(--mud-palette-lines-inputs) !important;
+}
+
+.mudButtonIcon {
+    min-width: 28px;
+    max-width: 28px;
+    min-height: 25px;
+    max-height: 28px;
+    margin: 0;
+    padding: 0;
+    padding-left: 12px;
+}
+
+.total-right-align {
+    text-align: right !important;
+    display: block !important;
+    margin-right: 20px !important;
+    width: 100% !important;
+}
+/* Begin: /wwwroot/index.html */
+#blazor-error-ui {
+    background: lightyellow;
+    color: black;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.5rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+/* End: /wwwroot/index.html */

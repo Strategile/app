@@ -1,0 +1,27 @@
+{
+	"routes": [
+		{
+			"route": "/*",
+			"rewrite": "/index.html",
+			"statusCode": 200
+		}
+	],
+	"navigationFallback": {
+		"rewrite": "index.html",
+		"exclude": [
+			"*.css",
+			"/assets/*.html",
+			"/assets/css/*.css",
+			"/assets/img/*.{png,jpg,gif,ico}"
+		]
+	},
+	"responseOverrides": {
+		"404": {
+			"rewrite": "/index.html",
+			"statusCode": 200
+		}
+	},
+	"mimeTypes": {
+		".json": "text/json"
+	}
+}
