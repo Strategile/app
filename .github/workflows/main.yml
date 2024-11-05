@@ -1,0 +1,70 @@
+name: Build Blazor to GitHub Pages
+
+# version: 2022.03.20.1513
+# Run workflow on every push to the master branch
+#tutorial: https://swimburger.net/blog/dotnet/how-to-deploy-aspnet-blazor-webassembly-to-github-pages
+on:
+  push:
+    branches: [ app, main ]
+    paths:
+      - 'src/**'
+      - '.github/workflows/**'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+  
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4        
+
+      - name: Find '#{CACHE_VERSION}' in '*.js' and Replace to '${{ github.run_id }}'
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "#{CACHE_VERSION}"
+          replace: ${{ github.run_id }}
+          include: '*.js'
+          regex: false
+
+      - name: Find '#{CACHE_VERSION}' in 'index.html' and Replace to '${{ github.run_id }}'
+        run: sed -i 's/#{CACHE_VERSION}/${{ github.run_id }}/g' index.html
+
+      # changes the base-tag in index.html from '/' to 'projeto-enquete' to match GitHub Pages repository subdirectory
+      - name: Change base-tag in index.html from / to /app
+        run: sed -i 's/<base href="\/" \/>/<base href="\/app\/" \/>/g' index.html
+    
+      # copy index.html to 404.html to serve the same file when a file is not found
+      - name: copy index.html to 404.html
+        run: cp index.html 404.html
+
+      # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+      - name: Add .nojekyll file
+        run: touch .nojekyll
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
