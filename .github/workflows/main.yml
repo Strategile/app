@@ -11,10 +11,13 @@ on:
       - '.github/workflows/**'
 
 jobs:
+  environment:
+    name: github-pages
+    url: ${{ steps.deployment.outputs.page_url }}
   deploy-to-github-pages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3        
+      - uses: actions/checkout@v4        
 
       - name: Find '#{CACHE_VERSION}' in '*.js' and Replace to '${{ github.run_id }}'
         uses: jacobtomlinson/gha-find-replace@v3
@@ -27,16 +30,8 @@ jobs:
       - name: Find '#{CACHE_VERSION}' in 'index.html' and Replace to '${{ github.run_id }}'
         run: sed -i 's/#{CACHE_VERSION}/${{ github.run_id }}/g' index.html
 
-      #- name: Find '#{BaseAddressUrl}' in '${{ env.APP_LOCATION }}/${{ env.IncludeFileToReplace }}' and Replace to '${{ env.BaseAddressUrl }}'
-      #  uses: jacobtomlinson/gha-find-replace@v3
-      #  with:
-      #    find: "#{BaseAddressUrl}"
-      #    replace: ${{ env.BaseAddressUrl }}
-      #    include: ${{ env.APP_LOCATION }}/${{ env.IncludeFileToReplace }}
-      #    regex: false
-
       # changes the base-tag in index.html from '/' to 'projeto-enquete' to match GitHub Pages repository subdirectory
-      - name: Change base-tag in index.html from / to projeto-enquete
+      - name: Change base-tag in index.html from / to /app
         run: sed -i 's/<base href="\/" \/>/<base href="\/app\/" \/>/g' index.html
     
       # copy index.html to 404.html to serve the same file when a file is not found
@@ -47,9 +42,14 @@ jobs:
       - name: Add .nojekyll file
         run: touch .nojekyll
       
-      - name: Commit wwwroot to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: main
-          FOLDER: .
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
