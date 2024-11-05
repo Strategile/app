@@ -16,22 +16,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3        
 
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 8.x
-          include-prerelease: true
-          
-      - name: Find '#{CACHE_VERSION}' in 'src/Strategile.BlazorApp/wwwroot/*.js' and Replace to '${{ github.run_id }}'
+      - name: Find '#{CACHE_VERSION}' in '*.js' and Replace to '${{ github.run_id }}'
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "#{CACHE_VERSION}"
           replace: ${{ github.run_id }}
-          include: 'src/Strategile.BlazorApp/wwwroot/*.js'
+          include: '*.js'
           regex: false
 
-      - name: Find '#{CACHE_VERSION}' in 'src/Strategile.BlazorApp/wwwroot/index.html' and Replace to '${{ github.run_id }}'
-        run: sed -i 's/#{CACHE_VERSION}/${{ github.run_id }}/g' src/Strategile.BlazorApp/wwwroot/index.html
+      - name: Find '#{CACHE_VERSION}' in 'index.html' and Replace to '${{ github.run_id }}'
+        run: sed -i 's/#{CACHE_VERSION}/${{ github.run_id }}/g' index.html
 
       #- name: Find '#{BaseAddressUrl}' in '${{ env.APP_LOCATION }}/${{ env.IncludeFileToReplace }}' and Replace to '${{ env.BaseAddressUrl }}'
       #  uses: jacobtomlinson/gha-find-replace@v3
@@ -41,25 +35,21 @@ jobs:
       #    include: ${{ env.APP_LOCATION }}/${{ env.IncludeFileToReplace }}
       #    regex: false
 
-      # publishes Blazor project to the release-folder
-      - name: Publish .NET Core Project
-        run: dotnet publish src/Strategile.BlazorApp/Strategile.BlazorApp.csproj -c Release -o release --nologo
-    
       # changes the base-tag in index.html from '/' to 'projeto-enquete' to match GitHub Pages repository subdirectory
       #- name: Change base-tag in index.html from / to projeto-enquete
       #  run: sed -i 's/<base href="\/" \/>/<base href="\/Strategile\/" \/>/g' release/wwwroot/index.html
     
       # copy index.html to 404.html to serve the same file when a file is not found
       - name: copy index.html to 404.html
-        run: cp release/wwwroot/index.html release/wwwroot/404.html
+        run: cp index.html 404.html
 
       # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
       - name: Add .nojekyll file
-        run: touch release/wwwroot/.nojekyll
+        run: touch .nojekyll
       
       - name: Commit wwwroot to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: release/wwwroot
+          FOLDER: .
