@@ -39,19 +39,19 @@ jobs:
         with:
           find: "#{CACHE_VERSION}"
           replace: ${{ github.run_id }}
-          include: '*.js'
+          include: 'wwwroot/*.js'
           regex: false
 
-      - name: Find '#{CACHE_VERSION}' in 'index.html' and Replace to '${{ github.run_id }}'
-        run: sed -i 's/#{CACHE_VERSION}/${{ github.run_id }}/g' index.html
+      - name: Find '#{CACHE_VERSION}' in 'wwwroot/index.html' and Replace to '${{ github.run_id }}'
+        run: sed -i 's/#{CACHE_VERSION}/${{ github.run_id }}/g' wwwroot/index.html
 
-      # changes the base-tag in index.html from '/' to 'projeto-enquete' to match GitHub Pages repository subdirectory
+      # changes the base-tag in index.html from '/' to 'app' to match GitHub Pages repository subdirectory
       - name: Change base-tag in index.html from / to /app
-        run: sed -i 's/<base href="\/" \/>/<base href="\/app\/" \/>/g' index.html
+        run: sed -i 's/<base href="\/" \/>/<base href="\/app\/" \/>/g' wwwroot/index.html
     
       # copy index.html to 404.html to serve the same file when a file is not found
       - name: copy index.html to 404.html
-        run: cp index.html 404.html
+        run: cp wwwroot/index.html wwwroot/404.html
 
       # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
       - name: Add .nojekyll file
