@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Strategile.BlazorApp",
   "resources": {
-    "hash": "sha256-wT6Z690tw+l48RM6Rj9X/VKfTiaYuW7C6DhbZ0QjcBw=",
+    "hash": "sha256-TxDwlybi3PEjeUVv+dzEg4gGMOJ6ZaY1jCYTtGDuqKg=",
     "jsModuleNative": {
       "dotnet.native.8.0.8.axquaxv89y.js": "sha256-ZZ0vSHe3qwZ4fS5RrjEngk7Q1xC6X4R10EAW+ybS8n0="
     },
@@ -60,8 +60,8 @@
       "NPOI.OpenXmlFormats.wasm": "sha256-EFn5G8v/6mGFkjwDQU6pCp30uIsmD5girNBaks5lJjE=",
       "SixLabors.Fonts.wasm": "sha256-XFgLy4tDgEuW2q1FZSSiXmhNjvPEJS8QliAX/7zAURc=",
       "SixLabors.ImageSharp.wasm": "sha256-WWUItiXA0SF4TVYAWgaa39TiLm8mDD1a6YhVAeQkOf4=",
-      "Strategile.BlazorApp.wasm": "sha256-73B6w3M9e8JjkW9nHTC5C60YPyP2ZOTNuZZ7Oy8wIDU=",
-      "Strategile.Shared.wasm": "sha256-MBADx7/ptNWA6Iosc4mzqi05akWdcIfxU5+6Wo7dzRw=",
+      "Strategile.BlazorApp.wasm": "sha256-v2Mw5DMB+Wqqeu1I1agDddCzkurakttVFrla6wi/7OI=",
+      "Strategile.Shared.wasm": "sha256-ywCSA85VQ3wbEcOFYdheddpHqwO565CoZ+rlxLpLgXM=",
       "System.Buffers.wasm": "sha256-d665UCxfwHl/GoDgZr0BIhXhlxHSkJcIX/2jTHdyJs4=",
       "System.Collections.Concurrent.wasm": "sha256-18t5n0Z96I4QXXrqWUQ8JA8xO4nYLXgPD3zIKad72aY=",
       "System.Collections.Immutable.wasm": "sha256-18jWal2gkVFBYryBbTxgcoVSMFuuQsOGUjzAWjJ+Ixk=",

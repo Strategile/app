@@ -33,7 +33,7 @@
       "url": "assets\/loading.html"
     },
     {
-      "hash": "sha256-C0ca9zPOG7Wy7QDFHaUAdTMBmq31TCU5thy5zOKfJy4=",
+      "hash": "sha256-LqxE0I9uHsdbbYUaBKkFRX3JT8tURaOayfPcAdQo2VQ=",
       "url": "index.html"
     },
     {
@@ -69,7 +69,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-R+49v3+iLVxIfErIKjG3zxeYZzVX3sD3r3XpSJSucfA=",
+      "hash": "sha256-HVaqf0GsLFVEIxx9XT\/du1SKnL5qeD7e2giXuYddeMU=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -253,11 +253,11 @@
       "url": "_framework\/SixLabors.ImageSharp.wasm"
     },
     {
-      "hash": "sha256-73B6w3M9e8JjkW9nHTC5C60YPyP2ZOTNuZZ7Oy8wIDU=",
+      "hash": "sha256-v2Mw5DMB+Wqqeu1I1agDddCzkurakttVFrla6wi\/7OI=",
       "url": "_framework\/Strategile.BlazorApp.wasm"
     },
     {
-      "hash": "sha256-MBADx7\/ptNWA6Iosc4mzqi05akWdcIfxU5+6Wo7dzRw=",
+      "hash": "sha256-ywCSA85VQ3wbEcOFYdheddpHqwO565CoZ+rlxLpLgXM=",
       "url": "_framework\/Strategile.Shared.wasm"
     },
     {
@@ -565,7 +565,7 @@
       "url": "appsettings.Development.json"
     },
     {
-      "hash": "sha256-FIoQ58qCcQUY\/zbUpYTq9Ex8RwyoLcbyiUih6mC0AYI=",
+      "hash": "sha256-mRiN9Xkxek27Q2t2AeN9V1Na1Kqtfif5KpseYzyQDiw=",
       "url": "appsettings.json"
     },
     {
@@ -585,5 +585,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "iz\/9C8BD"
+  "version": "uPbkpgPx"
 };
