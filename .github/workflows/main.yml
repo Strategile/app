@@ -5,7 +5,7 @@ name: Build Blazor to GitHub Pages
 #tutorial: https://swimburger.net/blog/dotnet/how-to-deploy-aspnet-blazor-webassembly-to-github-pages
 on:
   push:
-    branches: [ master ]
+    branches: [ app ]
     paths:
       - 'src/**'
       - '.github/workflows/**'
